@@ -22,13 +22,15 @@ def root():
 def get_webhook(webhook):
     logger(webhook)
     if os.environ["WEBHOOK"] != webhook:
-        logger("os webhook: " + os.environ["WEBHOOK"] + ", webhook: " + webhook)
+        logger("ERROR: Incorrect webhook")
         return "KO", 404
     try:
         if request.method == "GET" or not request.json:
             return "OK", 200
     except Exception:
         return "OK", 200
+
+    logger("INFO: Correct webhook")
     messages.message_received(request.json)
     return "OK", 201
 
