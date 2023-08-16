@@ -1,17 +1,15 @@
 import time
-import sys
 import git
 import os
 import messages
 from flask import Flask, jsonify, make_response, request
-
 
 app = Flask(__name__)
 
 
 def logger(text):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-    sys.stdout.write("{} | {}\n".format(timestamp, text))
+    print("{} | {}\n".format(timestamp, text))
 
 
 @app.route('/')
@@ -42,7 +40,7 @@ def not_found(error):
 def git_update():
     repo = git.Repo("./mordiMurBot")
     origin = repo.remotes.origin
-    repo.create_head("main", origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+    repo.create_head("main",
+                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
     origin.pull()
     return "", 200
-
