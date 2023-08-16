@@ -14,7 +14,7 @@ bot = TelegramBot()
 
 def logger(text):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-    sys.stdout.write("{} | {}\n".format(timestamp, text))
+    print("{} | {}\n".format(timestamp, text))
 
 
 def remove_diacritics(text):
