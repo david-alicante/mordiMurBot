@@ -25,7 +25,7 @@ def remove_diacritics(text):
 
 
 def message_received(message):
-    if "message" not in message:
+    if "text" not in message['message']:
         logger("NOT a chat message: " + json.dumps(message, indent=4, sort_keys=True))
     else:
         logger("A chat message: " + json.dumps(message, indent=4, sort_keys=True))
