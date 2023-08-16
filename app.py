@@ -2,6 +2,7 @@ import time
 import git
 import os
 import messages
+import logging
 from flask import Flask, jsonify, make_response, request
 
 app = Flask(__name__)
@@ -14,23 +15,23 @@ def logger(text):
 
 @app.route('/')
 def root():
-    logger("Alive and kicking!")
+    logging.info("Alive and kicking!")
     return 'Alive and kicking!'
 
 
 @app.route("/webhook/<webhook>", methods=["GET", "POST"])
 def get_webhook(webhook):
-    logger(webhook)
     if os.environ["WEBHOOK"] != webhook:
-        logger("ERROR: Incorrect webhook")
+        logging.error("Incorrect webhook")
         return "KO", 404
     try:
         if request.method == "GET" or not request.json:
+            logging.warning("Correct webhook but without post")
             return "OK", 200
     except Exception:
         return "OK", 200
 
-    logger("INFO: Correct webhook")
+    logging.info("Correct webhook with post")
     messages.message_received(request.json)
     return "OK", 201
 
