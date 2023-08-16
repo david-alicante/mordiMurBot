@@ -22,6 +22,7 @@ def root():
 def get_webhook(webhook):
     logger(webhook)
     if os.environ["WEBHOOK"] != webhook:
+        logger("os webhook: " + os.environ["WEBHOOK"] + ", webhook: " + webhook)
         return "KO", 404
     try:
         if request.method == "GET" or not request.json:
