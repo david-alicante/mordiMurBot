@@ -14,6 +14,7 @@ def logger(text):
 
 @app.route('/')
 def root():
+    logger("Alive and kicking!")
     return 'Alive and kicking!'
 
 
