@@ -1,3 +1,7 @@
+TELEGRAM_API_URL = "https://api.telegram.org/bot"
+
+
+
 START = """
 Bot para el canal de La Mordaza Social
 Si quieres saber que acciones puedes realizar, escribe /help, /ayuda o /aiura 😅
