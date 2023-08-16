@@ -1,7 +1,6 @@
 import random
 import time
 import json
-import sys
 import re
 import consts
 import photos
