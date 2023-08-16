@@ -4,7 +4,7 @@ import json
 import re
 import consts
 import photos
-import pole
+import poles
 from unicodedata import normalize
 from telegram_bot import TelegramBot
 
@@ -162,6 +162,6 @@ def click(chat_id, user_id):
 
 
 def pole(chat_id, chat_type, user_id, user, norm_text):
-    message = pole.message(chat_id, chat_type, user_id, user, norm_text)
+    message = poles.message(chat_id, chat_type, user_id, user, norm_text)
     bot.send_message(chat_id, message)
 

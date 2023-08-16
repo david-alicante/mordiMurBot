@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-import pole
+import poles
 
 load_dotenv()
 import photos
