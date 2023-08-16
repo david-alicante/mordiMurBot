@@ -1,5 +1,4 @@
 import logger
-import git
 import os
 import messages
 from flask import Flask, jsonify, make_response, request
@@ -33,16 +32,6 @@ def get_webhook(webhook):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({"error": "Not found"}), 404)
-
-
-@app.route("/git_update", methods=["POST"])
-def git_update():
-    repo = git.Repo("./mordiMurBot")
-    origin = repo.remotes.origin
-    repo.create_head("main",
-                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
-    origin.pull()
-    return "", 200
 
 
 if __name__ == '__main__':
