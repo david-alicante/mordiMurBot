@@ -14,9 +14,9 @@ def logger(text):
     sys.stdout.write("{} | {}\n".format(timestamp, text))
 
 
-@app.route("/status", methods=["GET"])
-def get_status():
-    return "Up and running", 201
+@app.route('/')
+def root():
+    return 'Alive and kicking!'
 
 
 @app.route("/webhook/<webhook>", methods=["GET", "POST"])
