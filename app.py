@@ -7,7 +7,6 @@ from flask import Flask, jsonify, make_response, request
 
 
 app = Flask(__name__)
-port = int(os.environ["PORT"])
 
 
 def logger(text):
@@ -46,9 +45,4 @@ def git_update():
     repo.create_head("main", origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
     origin.pull()
     return "", 200
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=port)
-
 
