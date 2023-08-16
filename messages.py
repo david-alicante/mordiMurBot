@@ -25,52 +25,55 @@ def remove_diacritics(text):
 
 
 def message_received(message):
-    logger(json.dumps(message, indent=4, sort_keys=True))
-    chat_id = message['message']['chat']['id']
-    chat_type = message['message']['chat']['type']
-    text = message['message']['text']
-    message_id = message['message']['message_id']
-    user = f"@{message['message']['from']['username']}"
-    user_id = message['message']['from']['id']
-    logger(f"chat_id: {chat_id}")
-    logger(f"text: {text}")
-    logger(f"message_id: {message_id}")
-    logger(f"user: {user}")
-    norm_text = remove_diacritics(text)
+    if "message" not in message:
+        logger("NOT a chat message: " + json.dumps(message, indent=4, sort_keys=True))
+    else:
+        logger("A chat message: " + json.dumps(message, indent=4, sort_keys=True))
+        chat_id = message['message']['chat']['id']
+        chat_type = message['message']['chat']['type']
+        text = message['message']['text']
+        message_id = message['message']['message_id']
+        user = f"@{message['message']['from']['username']}"
+        user_id = message['message']['from']['id']
+        logger(f"chat_id: {chat_id}")
+        logger(f"text: {text}")
+        logger(f"message_id: {message_id}")
+        logger(f"user: {user}")
+        norm_text = remove_diacritics(text)
 
-    if norm_text == "/start":
-        start(chat_id)
-    elif norm_text == "/help" or text == "/ayuda" or text == "/aiura":
-        ayuda(chat_id)
-    elif norm_text == "hola":
-        hola(chat_id, user)
-    elif norm_text == "buenos dias":
-        buenos_dias(chat_id, user)
-    elif norm_text == "buenas tardes":
-        buenas_tardes(chat_id, user)
-    elif norm_text == "buenas noches":
-        buenas_noches(chat_id, user)
-    elif norm_text == "gatos":
-        gatos(chat_id)
-    elif norm_text == "gatos gif":
-        gatos(chat_id, True)
-    elif norm_text == "perros":
-        perros(chat_id)
-    elif norm_text == "brocoli":
-        brocoli(chat_id)
-    elif norm_text == "churros":
-        churros(chat_id)
-    elif norm_text == "cafe":
-        cafe(chat_id)
+        if norm_text == "/start":
+            start(chat_id)
+        elif norm_text == "/help" or text == "/ayuda" or text == "/aiura":
+            ayuda(chat_id)
+        elif norm_text == "hola":
+            hola(chat_id, user)
+        elif norm_text == "buenos dias":
+            buenos_dias(chat_id, user)
+        elif norm_text == "buenas tardes":
+            buenas_tardes(chat_id, user)
+        elif norm_text == "buenas noches":
+            buenas_noches(chat_id, user)
+        elif norm_text == "gatos":
+            gatos(chat_id)
+        elif norm_text == "gatos gif":
+            gatos(chat_id, True)
+        elif norm_text == "perros":
+            perros(chat_id)
+        elif norm_text == "brocoli":
+            brocoli(chat_id)
+        elif norm_text == "churros":
+            churros(chat_id)
+        elif norm_text == "cafe":
+            cafe(chat_id)
 
-    elif norm_text.startswith("elige"):
-        elige(chat_id, text)
-    elif norm_text == "click":
-        click(chat_id, user_id)
-    elif norm_text == "pole" or norm_text == "oro" \
-            or norm_text == "subpole" or norm_text == "plata" \
-            or norm_text == "fail" or norm_text == "bronce":
-        pole(chat_id, chat_type, user_id, user, norm_text)
+        elif norm_text.startswith("elige"):
+            elige(chat_id, text)
+        elif norm_text == "click":
+            click(chat_id, user_id)
+        elif norm_text == "pole" or norm_text == "oro" \
+                or norm_text == "subpole" or norm_text == "plata" \
+                or norm_text == "fail" or norm_text == "bronce":
+            pole(chat_id, chat_type, user_id, user, norm_text)
 
 
 def start(chat_id):
