@@ -21,7 +21,7 @@ def message(chat_id, chat_type, user_id, user, norm_text):
             if now.hour == pole_types[key]["hour"] and now.minute == pole_types[key]["minutes"]:
                 pole_type = key
 
-        mes = "Ach@,¿Qué pole ni que pola?"
+        mes = "Ach@, ¿Qué pole ni que pola?" + str(now)
         if pole_type is not None:
             mes = pole(chat_id, user_id, user, norm_text, pole_type)
     else:
