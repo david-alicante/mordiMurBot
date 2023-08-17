@@ -1,4 +1,5 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import time
 import sys
 import consts
@@ -14,14 +15,14 @@ def logger(text):
 
 def message(chat_id, chat_type, user_id, user, norm_text):
     if chat_type == "group" or chat_type == "supergroup":
-        now = datetime.now()
+        now = datetime.now(tz=ZoneInfo("Europe/Madrid"))
         print(now)
         pole_type = None
         for key in pole_types.keys():
             if now.hour == pole_types[key]["hour"] and now.minute == pole_types[key]["minutes"]:
                 pole_type = key
 
-        mes = "Ach@, ¿Qué pole ni que pola?" + str(now)
+        mes = "Ach@, ¿Qué pole ni que pola? " + str(now)
         if pole_type is not None:
             mes = pole(chat_id, user_id, user, norm_text, pole_type)
     else:
