@@ -1,19 +1,14 @@
 import random
-import time
 import json
 import re
 import consts
 import photos
 import poles
+import logger
 from unicodedata import normalize
 from telegram_bot import TelegramBot
 
 bot = TelegramBot()
-
-
-def logger(text):
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-    print("{} | {}\n".format(timestamp, text))
 
 
 def remove_diacritics(text):
@@ -26,19 +21,15 @@ def remove_diacritics(text):
 
 def message_received(message):
     if "text" not in message['message']:
-        logger("NOT a chat message: " + json.dumps(message, indent=4, sort_keys=True))
+        logger.info("NOT a chat message: " + json.dumps(message, indent=4, sort_keys=True))
     else:
-        logger("A chat message: " + json.dumps(message, indent=4, sort_keys=True))
+        logger.info("A chat message: " + json.dumps(message, indent=4, sort_keys=True))
         chat_id = message['message']['chat']['id']
         chat_type = message['message']['chat']['type']
         text = message['message']['text']
         message_id = message['message']['message_id']
         user = f"@{message['message']['from']['username']}"
         user_id = message['message']['from']['id']
-        logger(f"chat_id: {chat_id}")
-        logger(f"text: {text}")
-        logger(f"message_id: {message_id}")
-        logger(f"user: {user}")
         norm_text = remove_diacritics(text)
 
         if norm_text == "/start":
@@ -78,32 +69,32 @@ def message_received(message):
 
 def start(chat_id):
     res = bot.send_message(chat_id, consts.START)
-    logger(res)
+    logger.info(res)
 
 
 def ayuda(chat_id):
     res = bot.send_message(chat_id, consts.AYUDA)
-    logger(res)
+    logger.info(res)
 
 
 def hola(chat_id, user):
     res = bot.send_message(chat_id, f"Hola, {user}, ¿qué tal estás?")
-    logger(res)
+    logger.info(res)
 
 
 def buenos_dias(chat_id, user):
     res = bot.send_message(chat_id, f"Buenos días, {user}, ¿has dormido bien?")
-    logger(res)
+    logger.info(res)
 
 
 def buenas_tardes(chat_id, user):
     res = bot.send_message(chat_id, f"Buenas tardes, {user}, ¿nos hacemos unas estrellas en la terracica 🍻?")
-    logger(res)
+    logger.info(res)
 
 
 def buenas_noches(chat_id, user):
     res = bot.send_message(chat_id, f"Buenas noches, {user}, descansa")
-    logger(res)
+    logger.info(res)
 
 
 def gatos(chat_id, is_gif=False):
@@ -113,7 +104,7 @@ def gatos(chat_id, is_gif=False):
             res = bot.send_video(chat_id, photo)
         else:
             res = bot.send_photo(chat_id, photo)
-    logger(res)
+    logger.info(res)
 
 
 def perros(chat_id):
@@ -123,26 +114,26 @@ def perros(chat_id):
             res = bot.send_video_url(chat_id, file_url)
         else:
             res = bot.send_photo_url(chat_id, file_url)
-    logger(res)
+    logger.info(res)
 
 
 def cafe(chat_id):
     photo = photos.get_coffee()
     if photo is not None:
         res = bot.send_photo(chat_id, photo)
-    logger(res)
+    logger.info(res)
 
 
 def brocoli(chat_id):
     brocoli_url = photos.get_pixabay("broccoli")
     res = bot.send_photo_url(chat_id, brocoli_url)
-    logger(res)
+    logger.info(res)
 
 
 def churros(chat_id):
     photo = photos.get_churros()
     res = bot.send_photo(chat_id, photo)
-    logger(res)
+    logger.info(res)
 
 
 def elige(chat_id, text):
@@ -152,7 +143,7 @@ def elige(chat_id, text):
     first_res = random.choice(consts.ELIGE_LIST)
     chosen = random.choice(options).strip()
     res = bot.send_message(chat_id, f"{first_res} {chosen}")
-    logger(res)
+    logger.info(res)
 
 
 def click(chat_id, user_id):

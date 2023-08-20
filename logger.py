@@ -1,8 +1,8 @@
-import time
+import datetime
 
 
 def logger(text):
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+    timestamp = datetime.now.strftime("%Y-%m-%d %H:%M:%S")
     print("{} | {}\n".format(timestamp, text))
 
 
