@@ -43,5 +43,7 @@ def pole(chat_id, user_id, user, norm_text, pole_type):
     mes = None
     if premio is not None:
         mes = f"El usuario {user} ha conseguido {premio}"
-    logger.info("pole_score:", str(pole_score))
+    else:
+        mes = "Sin resultado en pole"
+    logger.info(mes + "pole_score: " + str(pole_score))
     return mes
