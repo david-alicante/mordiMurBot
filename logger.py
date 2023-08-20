@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 
 admin_chat_id = 7551427
