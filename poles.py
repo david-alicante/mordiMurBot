@@ -30,17 +30,17 @@ def pole(chat_id, user_id, user, norm_text, pole_type):
         premio = "el oro"
     elif norm_text == "subpole" or norm_text == "plata" and chat_id in pole_score \
             and "plata" not in pole_score[chat_id] \
-            and user_id != pole_score["chat_id"]["oro"]:
+            and user_id != pole_score[chat_id]["oro"]:
         pole_score[chat_id]["plata"] = user_id
         premio = "la plata"
     elif norm_text == "fail" or norm_text == "bronce" and chat_id in pole_score \
             and "plata" in pole_score[chat_id] \
             and "bronce" not in pole_score[chat_id] \
-            and user_id != pole_score["chat_id"]["oro"] \
-            and user_id != pole_score["chat_id"]["plata"]:
+            and user_id != pole_score[chat_id]["oro"] \
+            and user_id != pole_score[chat_id]["plata"]:
         pole_score[chat_id]["bronce"] = user_id
         premio = "el bronce"
-    mes = None
+
     if premio is not None:
         mes = f"El usuario {user} ha conseguido {premio}"
     else:

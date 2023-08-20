@@ -42,7 +42,7 @@ pole_types = {
     "pole mañanera": {"hour": 7, "minutes": 0},
     "pole andaluza": {"hour": 12, "minutes": 0},
     "pole patitos": {"hour": 22, "minutes": 22},
-    "pole prueba": {"hour": 11, "minutes": 30},
+    "pole prueba": {"hour": 11, "minutes": 40},
 
 }
 
