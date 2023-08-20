@@ -8,7 +8,7 @@ import logger
 from unicodedata import normalize
 from telegram_bot import TelegramBot
 
-bot = TelegramBot()
+logger.bot = bot = TelegramBot()
 
 
 def remove_diacritics(text):
