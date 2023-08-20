@@ -8,7 +8,7 @@ bot = None
 
 def logger(*args):
     timestamp = datetime.now(tz=ZoneInfo("Europe/Madrid")).strftime("%Y-%m-%d %H:%M:%S")
-    args = (f"{timestamp} | ",) + args
+    args = (f"{timestamp} |",) + args
     print(args)
     log = ""
     for arg in args:
@@ -21,17 +21,17 @@ def logger(*args):
     bot.send_message(admin_chat_id, log)
 
 
-def info(text):
-    text = f"[INFO] - {text}"
-    logger(text)
+def info(*args):
+    args = ("[INFO] -",) + args
+    logger(args)
 
 
-def warning(text):
-    text = f"[WARNING] - {text}"
-    logger(text)
+def warning(*args):
+    args = ("[INFO] -",) + args
+    logger(args)
 
 
-def error(text):
-    text = f"[ERROR] - {text}"
-    logger(text)
+def error(*args):
+    args = ("[INFO] -",) + args
+    logger(args)
 
